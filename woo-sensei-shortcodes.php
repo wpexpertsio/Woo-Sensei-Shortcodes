@@ -1,11 +1,11 @@
 <?php
 /*
 * Plugin Name: Woo Sensei Shortcodes
-* Version: 1.2.0
-* Plugin URI: http://www.wpexperts.io/
+* Version: 1.3.0
+* Plugin URI: https://www.wpexperts.io/
 * Description: Sensei Shortcodes in Advanced Layout Builder
-* Author: wpexpertsio
-* Author URI: http://www.wpexperts.io/
+* Author: wpexperts.io
+* Author URI: https://www.wpexperts.io/
 */
 
 include 'shortcodes.php';
@@ -31,7 +31,7 @@ function wss_sensei_deactive_error() {
 
         printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
     }
-	
+
 }
 
 add_action( 'admin_notices', 'wss_sensei_deactive_error', 20 );

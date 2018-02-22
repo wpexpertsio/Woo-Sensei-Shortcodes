@@ -347,12 +347,13 @@ function start_course($atts) {
 
             <script type="text/javascript"> window.location = '<?php echo get_permalink( $course_id ); ?>'; </script>
 
-        <?php
+            <?php
         } // End If Statement
     } // End If Statement
 
     $prerequisite_complete = sensei_check_prerequisite_course( $course_id );
     //echo die($is_user_taking_course);
+    $strt_btn ='';
     if ( $prerequisite_complete && empty($is_user_taking_course) ) {
         $strt_btn = '<form method="POST" action="'.$link.'">';
 
@@ -449,25 +450,26 @@ function course_lesson_list($atts) {
 
 add_shortcode('wss_sensei_course_lesson_list', 'course_lesson_list');
 
-function wss_progressbar() {
+function wss_progressbar()
+{
     global $post, $woothemes_sensei;
-    $wss_progressbar  = new Sensei_Course();
+    $wss_progressbar = new Sensei_Course();
 
     $per_page = 20;
-    if ( isset( Sensei()->settings->settings[ 'my_course_amount' ] )
-        && ( 0 < absint( Sensei()->settings->settings[ 'my_course_amount' ] ) ) ) {
-        $per_page = absint( Sensei()->settings->settings[ 'my_course_amount' ] );
+    if (isset(Sensei()->settings->settings['my_course_amount'])
+        && (0 < absint(Sensei()->settings->settings['my_course_amount']))) {
+        $per_page = absint(Sensei()->settings->settings['my_course_amount']);
     }
 
 
-    $course_statuses = Sensei_Utils::sensei_check_for_activity( array( 'user_id' => get_current_user_ID(), 'type' => 'sensei_course_status' ), true );
+    $course_statuses = Sensei_Utils::sensei_check_for_activity(array('user_id' => get_current_user_ID(), 'type' => 'sensei_course_status'), true);
     // User may only be on 1 Course
-    if ( !is_array($course_statuses) ) {
-        $course_statuses = array( $course_statuses );
+    if (!is_array($course_statuses)) {
+        $course_statuses = array($course_statuses);
     }
     $completed_ids = $active_ids = array();
-    foreach( $course_statuses as $course_status ) {
-        if ( Sensei_Utils::user_completed_course( $course_status, get_current_user_ID() ) ) {
+    foreach ($course_statuses as $course_status) {
+        if (Sensei_Utils::user_completed_course($course_status, get_current_user_ID())) {
             $completed_ids[] = $course_status->comment_post_ID;
         } else {
             $active_ids[] = $course_status->comment_post_ID;
@@ -475,32 +477,32 @@ function wss_progressbar() {
     }
 
     $active_courses = array();
-    if ( 0 < intval( count( $active_ids ) ) ) {
+    if (0 < intval(count($active_ids))) {
         $my_courses_section = 'active';
-        $active_courses = Sensei()->course->course_query( $per_page, 'usercourses', $active_ids );
-        $active_count = count( $active_ids );
+        $active_courses = Sensei()->course->course_query($per_page, 'usercourses', $active_ids);
+        $active_count = count($active_ids);
     } // End If Statement
 
-    $lesson_count = Sensei()->course->course_lesson_count( absint( get_the_ID() ) );
+    $lesson_count = Sensei()->course->course_lesson_count(absint(get_the_ID()));
 
-    $course_lessons =  Sensei()->course->course_lessons( get_the_ID() );
+    $course_lessons = Sensei()->course->course_lessons(get_the_ID());
     $lessons_completed = 0;
-    foreach ( $course_lessons as $lesson ) {
-        if ( Sensei_Utils::user_completed_lesson( $lesson->ID, get_current_user_ID() ) ) {
+    foreach ($course_lessons as $lesson) {
+        if (Sensei_Utils::user_completed_lesson($lesson->ID, get_current_user_ID())) {
             ++$lessons_completed;
         }
     }
+    if ($lesson_count > 0) {
+        $progress_percentage = abs(round((doubleval($lessons_completed) * 100) / ($lesson_count), 0));
 
-    $progress_percentage = abs( round( ( doubleval( $lessons_completed ) * 100 ) / ( $lesson_count ), 0 ) );
+        // Handle Division by Zero
+        if (0 == $lesson_count) {
+            $lesson_count = 1;
+        } // End If Statement
 
-    // Handle Division by Zero
-    if ( 0 == $lesson_count ) {
-        $lesson_count = 1;
-    } // End If Statement
-
-    return  $wss_progressbar->get_progress_meter($progress_percentage);
+        return $wss_progressbar->get_progress_meter($progress_percentage);
+    }
 }
-
 add_shortcode('wss_progressbar','wss_progressbar');
 
 function wss_course_nav() {

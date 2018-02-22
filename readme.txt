@@ -2,57 +2,60 @@
 Contributors: wpexpertsio
 Tags: woo sensei shortcodes, sensei shortcodes, woo sensei
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=pay@objects.ws&item_name=Donation For Plugin
-Requires at least: 4.0
-Tested up to: 4.5.3
-Stable tag: 1.2.0
+Requires at least: 4.5
+Tested up to: 4.9.2
+Stable tag: 1.3.0
 License: GPLv2
 License URI: GPLv2
 
 == Description ==
 Woo Sensei Shortcodes give you option to add course and lesson content in any post type. There are 12 Sensei short-codes which helps you to show course and lesson any where in the website.. You can use these short-codes in any post, page or custom post type. This plugin is very helpful when you use Advanced Layout Builder.
 
-= [wss_sensei_lesson_video] =
+`[wss_sensei_lesson_video] `
   - Attributes:  lesson_id
   - Description:  view lesson video
 
-= [wss_sensei_course_video] =
-  - Description: view course video
+`[wss_sensei_course_video]`
+   - Description: view course video
 
-= [wss_sensei_message_button] =
-  - Attributes: lesson_id
-  - Description: view contact teacher button
+`[wss_sensei_message_button]`
+   - Attributes: lesson_id
+   - Description: view contact teacher button
 
-= [wss_sensei_breadcrumb] =
+`[wss_sensei_breadcrumb]`
   - Description: view Back to Course link
 
-= [wss_display_attached_media] =
+`[wss_display_attached_media]`
    - Attributes: lesson_id
    - Description: view attached files with in a lesson
 
-= [wss_next_prev_lesson] =
+`[wss_next_prev_lesson]`
    - Description: view navigation
 
-= [wss_sensei_lesson_button] =
+`[wss_sensei_lesson_button]`
    - Attributes: lesson_id, user_id
    - Description: view Lesson Complete Button
 
-= [wss_sensei_course_start] =
+`[wss_sensei_course_start]`
    - Attributes: course_id, user_id
    - Description: view Start Course Button
 
-= [wss_sensei_course_lesson_list] =
+`[wss_sensei_course_lesson_list]`
    - Attributes: course_id
    - Description: view list of lessons with in a course
 
-= [wss_course_nav] =
+`[wss_course_nav]`
    - Description: view next , prev link of the current course  
 
-= [wss_modules] =
+`[wss_modules]`
    - Attributes: course_id, user_id
-   - Description: view modules
+   - Description: view modules.
 
-= [wss_progressbar] =
-   - Description: view just course progress
+`[wss_progressbar]`
+   - Description: view just course progress.
+
+**Interested in contributing to Woo Sensei Shortcodes**	
+Head over to the [Woo Sensei Shortcodes	 **GitHub Repository**](https://github.com/wpexpertsio/Woo-Sensei-Shortcodes) to find out how you can pitch in ;)
 
 == Installation ==
 To add a WordPress Plugin using the built-in plugin installer:
@@ -70,6 +73,9 @@ If successful, click Activate Plugin to activate it, or Return to Plugin Install
 Just after installing Woo Sensei Shortcodes, You can use any of the provided shortcodes by WOO Sensei Shortcodes
 
 == Changelog ==
+= 1.3.0 =
+- Bug fix of Division by zero .
+- Bug fix for code compatibility with update new version with wordpress.
 
 = 1.2.0 =
 - Bug fix of redefining contant reported by @tripflex.
