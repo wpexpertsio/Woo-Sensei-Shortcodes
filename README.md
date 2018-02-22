@@ -76,6 +76,10 @@ Just after installing Woo Sensei Shortcodes, You can use any of the provided sho
 
 ## Changelog
 
+**1.3**
+- Bug fix of Division by zero .
+- Bug fix for code compatibility with update new version with wordpress.
+
 **1.2.0**
 
 - Bug fix of redefining contant reported by @tripflex.
